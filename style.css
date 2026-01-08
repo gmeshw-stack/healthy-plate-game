@@ -1,15 +1,15 @@
 body {
-  /* 強制套用注音字型 */
+  /* GitHub 強化：確保字型權重最高 */
   font-family: 'Bpmf GenRyu', "Noto Sans TC", sans-serif !important;
   text-align: center;
   background-color: #f8f9fa;
   margin: 0;
   padding: 10px;
-  /* iPad Safari 強化：防止長按選取與平滑化字體 */
+  /* 禁用 iPad 系統原生手勢 */
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-  -webkit-font-smoothing: antialiased;
   user-select: none;
+  -webkit-font-smoothing: antialiased;
 }
 
 #game-area {
@@ -33,7 +33,6 @@ body {
   touch-action: none; 
 }
 
-/* 拖曳感應區：已取消虛線 */
 .plate-zone {
   position: absolute;
   display: flex;
@@ -44,15 +43,14 @@ body {
 }
 
 .category-name {
-  font-family: 'Bpmf GenRyu', sans-serif !important;
-  font-size: 16px; 
+  font-family: inherit !important;
+  font-size: 16px;
   font-weight: bold;
   color: #fff;
   background: rgba(0, 0, 0, 0.4);
   padding: 4px 8px;
   border-radius: 4px;
   pointer-events: none;
-  white-space: nowrap;
 }
 
 #foods {
@@ -66,12 +64,12 @@ body {
 }
 
 .food {
-  font-family: 'Bpmf GenRyu', sans-serif !important;
+  font-family: inherit !important;
   display: inline-block;
   background: #fff;
   border: 2px solid #444;
   margin: 8px;
-  /* 增加寬度以確保注音不重疊 */
+  /* 加大間距確保注音不重疊 */
   padding: 15px 35px; 
   cursor: grab;
   font-size: 24px; 
@@ -82,9 +80,18 @@ body {
 }
 
 button {
-  font-family: 'Bpmf GenRyu', sans-serif !important;
+  font-family: inherit !important;
   padding: 10px 20px;
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
   border-radius: 8px;
+  background: white;
+  border: 1px solid #333;
+}
+
+#message {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 10px;
+  height: 30px;
 }

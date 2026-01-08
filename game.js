@@ -10,7 +10,7 @@ const message = document.getElementById("message");
 document.getElementById("startBtn").onclick = startGame;
 document.getElementById("resetBtn").onclick = resetGame;
 
-// 你校對後的百分比座標
+// 套用你最後微調後的精確百分比座標
 const positions = {
   dairy: { top: "3%", left: "3%", width: "25%", height: "28%" },
   fruit: { top: "29%", left: "15%", width: "18%", height: "65%" },
