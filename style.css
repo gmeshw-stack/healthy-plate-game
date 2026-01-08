@@ -35,13 +35,16 @@ button {
   z-index: 1;
 }
 
-/* 拖曳區（隱形） */
+/* 拖曳區（顯示校正用虛線） */
 .plate-zone {
   position: absolute;
-  border: none;
-  background: transparent;
+  border: 2px dashed rgba(255, 0, 0, 0.8); /* 紅色虛線 */
+  background: rgba(255, 0, 0, 0.15);      /* 半透明底 */
+  box-sizing: border-box;
   pointer-events: auto;
+  z-index: 5;
 }
+
 
 /* 食物區 */
 #foods {
