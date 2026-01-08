@@ -13,15 +13,42 @@ const message = document.getElementById("message");
 startBtn.onclick = startGame;
 resetBtn.onclick = resetGame;
 
+/* 像素級定位（對齊餐盤圖） */
+const positions = {
+  fruit: {
+    top: "12px",
+    left: "10px",
+    width: "78px",
+    height: "291px"
+  },
+  vegetable: {
+    top: "12px",
+    left: "96px",
+    width: "120px",
+    height: "291px"
+  },
+  grain: {
+    top: "102px",
+    left: "224px",
+    width: "186px",
+    height: "86px"
+  },
+  protein: {
+    top: "206px",
+    left: "224px",
+    width: "186px",
+    height: "90px"
+  }
+};
+
 function startGame() {
   if (gameStarted) return;
   gameStarted = true;
   startBtn.disabled = true;
   resetBtn.disabled = false;
+
   message.innerText = "";
-  message.style.color = "black";
-  document.getElementById("instruction").innerText =
-    "拖曳食物到正確的分類區域";
+  placedCount = 0;
 
   startTime = Date.now();
   timerInterval = setInterval(updateTimer, 1000);
@@ -34,28 +61,18 @@ function resetGame() {
   clearInterval(timerInterval);
   timerText.innerText = "時間：0 秒";
   message.innerText = "";
-  placedCount = 0;
   gameStarted = false;
+  placedCount = 0;
   startBtn.disabled = false;
   resetBtn.disabled = true;
   plate.innerHTML = "";
   foodsArea.innerHTML = "";
-  document.getElementById("instruction").innerText =
-    "請點擊「開始遊戲」，再將食物拖曳到正確的分類";
 }
 
 function updateTimer() {
   const seconds = Math.floor((Date.now() - startTime) / 1000);
   timerText.innerText = `時間：${seconds} 秒`;
 }
-
-// 四個分類對應餐盤圖
-const positions = {
-  fruit:   { top: "20px", left: "10px", width: "80px", height: "260px" },   // 橘色
-  vegetable:{ top: "20px", left: "100px", width: "100px", height: "260px" }, // 綠色
-  protein: { top: "210px", left: "210px", width: "180px", height: "90px" },  // 紅色
-  grain:   { top: "120px", left: "210px", width: "180px", height: "90px" }   // 黃色
-};
 
 function buildPlate() {
   plate.innerHTML = "";
@@ -66,14 +83,11 @@ function buildPlate() {
     zone.innerText = cat.name;
     zone.dataset.accept = cat.id;
 
-    // 設定位置大小
-    if (positions[cat.id]) {
-      zone.style.top = positions[cat.id].top;
-      zone.style.left = positions[cat.id].left;
-      zone.style.width = positions[cat.id].width;
-      zone.style.height = positions[cat.id].height;
-      zone.style.lineHeight = positions[cat.id].height; // 文字置中
-    }
+    zone.style.top = positions[cat.id].top;
+    zone.style.left = positions[cat.id].left;
+    zone.style.width = positions[cat.id].width;
+    zone.style.height = positions[cat.id].height;
+    zone.style.lineHeight = positions[cat.id].height;
 
     zone.ondragover = e => e.preventDefault();
     zone.ondrop = e => {
@@ -89,11 +103,12 @@ function buildPlate() {
 
         if (placedCount === gameData.foods.length) {
           clearInterval(timerInterval);
-          message.innerText = `完成！你花了 ${Math.floor((Date.now() - startTime)/1000)} 秒`;
+          message.innerText =
+            `🎉 完成！你花了 ${Math.floor((Date.now() - startTime)/1000)} 秒`;
           message.style.color = "blue";
         }
       } else {
-        message.innerText = "錯誤，請再試試看！";
+        message.innerText = "錯誤，請再試一次";
         message.style.color = "red";
       }
     };
@@ -104,6 +119,7 @@ function buildPlate() {
 
 function buildFoods() {
   foodsArea.innerHTML = "";
+
   gameData.foods.forEach((f, i) => {
     const food = document.createElement("div");
     food.className = "food";
