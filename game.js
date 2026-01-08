@@ -8,6 +8,7 @@ const foodsArea = document.getElementById("foods");
 const timerText = document.getElementById("timer");
 const startBtn = document.getElementById("startBtn");
 const resetBtn = document.getElementById("resetBtn");
+const message = document.getElementById("message"); // 顯示提示訊息
 
 startBtn.onclick = startGame;
 resetBtn.onclick = resetGame;
@@ -17,6 +18,8 @@ function startGame() {
   gameStarted = true;
   startBtn.disabled = true;
   resetBtn.disabled = false;
+  message.innerText = "";
+  message.style.color = "black";
   document.getElementById("instruction").innerText =
     "拖曳食物到正確的分類區域";
 
@@ -30,6 +33,7 @@ function startGame() {
 function resetGame() {
   clearInterval(timerInterval);
   timerText.innerText = "時間：0 秒";
+  message.innerText = "";
   placedCount = 0;
   gameStarted = false;
   startBtn.disabled = false;
@@ -62,17 +66,17 @@ function buildPlate() {
         zone.appendChild(food);
         food.draggable = false;
         placedCount++;
+        message.innerText = "正確！";
+        message.style.color = "green";
 
         if (placedCount === gameData.foods.length) {
           clearInterval(timerInterval);
-          alert(
-            `完成！你花了 ${Math.floor(
-              (Date.now() - startTime) / 1000
-            )} 秒`
-          );
+          message.innerText = `完成！你花了 ${Math.floor((Date.now() - startTime) / 1000)} 秒`;
+          message.style.color = "blue";
         }
       } else {
-        alert("這個分類不正確，再試試看！");
+        message.innerText = "錯誤，請再試試看！";
+        message.style.color = "red";
       }
     };
 
