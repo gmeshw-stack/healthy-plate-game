@@ -15,36 +15,11 @@ resetBtn.onclick = resetGame;
 
 /* 像素級定位（對齊你的餐盤圖） */
 const positions = {
-  dairy: {      // 左上 淺藍
-    top: "10px",
-    left: "10px",
-    width: "78px",
-    height: "80px"
-  },
-  fruit: {      // 左下 橘色
-    top: "95px",
-    left: "10px",
-    width: "78px",
-    height: "208px"
-  },
-  vegetable: {  // 中間 綠色
-    top: "12px",
-    left: "96px",
-    width: "120px",
-    height: "291px"
-  },
-  grain: {      // 右上 黃色
-    top: "102px",
-    left: "224px",
-    width: "186px",
-    height: "86px"
-  },
-  protein: {    // 右下 紅色
-    top: "206px",
-    left: "224px",
-    width: "186px",
-    height: "90px"
-  }
+  dairy: { top: "10px", left: "10px", width: "78px", height: "80px" },
+  fruit: { top: "95px", left: "10px", width: "78px", height: "208px" },
+  vegetable: { top: "12px", left: "96px", width: "120px", height: "291px" },
+  grain: { top: "102px", left: "224px", width: "186px", height: "86px" },
+  protein: { top: "206px", left: "224px", width: "186px", height: "90px" }
 };
 
 function startGame() {
@@ -79,13 +54,20 @@ function updateTimer() {
   timerText.innerText = `時間：${seconds} 秒`;
 }
 
+/* 🔀 洗牌函式（隨機排列） */
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
 function buildPlate() {
   plate.innerHTML = "";
 
   gameData.categories.forEach(cat => {
     const zone = document.createElement("div");
     zone.className = "plate-zone";
-    zone.innerText = cat.name;
     zone.dataset.accept = cat.id;
 
     zone.style.top = positions[cat.id].top;
@@ -108,7 +90,7 @@ function buildPlate() {
         if (placedCount === gameData.foods.length) {
           clearInterval(timerInterval);
           message.innerText =
-            `完成！你花了 ${Math.floor((Date.now() - startTime)/1000)} 秒`;
+            `完成！你花了 ${Math.floor((Date.now() - startTime) / 1000)} 秒`;
           message.style.color = "blue";
         }
       } else {
@@ -124,7 +106,10 @@ function buildPlate() {
 function buildFoods() {
   foodsArea.innerHTML = "";
 
-  gameData.foods.forEach((f, i) => {
+  const foods = [...gameData.foods];
+  shuffle(foods);   // ← 關鍵：每次開始都洗牌
+
+  foods.forEach((f, i) => {
     const food = document.createElement("div");
     food.className = "food";
     food.id = "food" + i;

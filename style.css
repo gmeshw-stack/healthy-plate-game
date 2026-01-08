@@ -32,12 +32,12 @@ button {
   height: 315px;
   background: url("plate.png") no-repeat;
   background-size: 420px 315px;
+  z-index: 1;
 }
 
-/* 拖曳區（正式版完全隱形） */
+/* 拖曳區（隱形） */
 .plate-zone {
   position: absolute;
-  box-sizing: border-box;
   border: none;
   background: transparent;
   pointer-events: auto;
@@ -46,6 +46,8 @@ button {
 /* 食物區 */
 #foods {
   width: 200px;
+  position: relative;
+  z-index: 10;
 }
 
 .food {
