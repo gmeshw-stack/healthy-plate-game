@@ -15,11 +15,11 @@ resetBtn.onclick = resetGame;
 
 /* 像素級定位（對齊你的餐盤圖） */
 const positions = {
-  dairy: { top: "10px", left: "10px", width: "88px", height: "80px" },
-  fruit: { top: "100px", left: "60px", width: "58px", height: "200px" },
-  vegetable: { top: "95px", left: "136px", width: "95px", height: "209px" },
-  protein: { top: "92px", left: "234px", width: "176px", height: "81px" },
-  grain: { top: "201px", left: "234px", width: "176px", height: "95px" }
+  dairy: { top: "10px", left: "10px", width: "93px", height: "85px" },
+  fruit: { top: "100px", left: "65px", width: "78px", height: "200px" },
+  vegetable: { top: "95px", left: "146px", width: "90px", height: "209px" },
+  protein: { top: "87px", left: "239px", width: "176px", height: "81px" },
+  grain: { top: "191px", left: "239px", width: "176px", height: "105px" }
 };
 
 function startGame() {
