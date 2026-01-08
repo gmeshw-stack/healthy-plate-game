@@ -13,37 +13,33 @@ const message = document.getElementById("message");
 startBtn.onclick = startGame;
 resetBtn.onclick = resetGame;
 
-/* 像素級定位（對齊餐盤圖） */
+/* 像素級定位（對齊你的餐盤圖） */
 const positions = {
-  dairy: {        // 淺藍 左上
+  dairy: {      // 左上 淺藍
     top: "10px",
     left: "10px",
     width: "78px",
     height: "80px"
   },
-
-  fruit: {        // 橘色 左側
+  fruit: {      // 左下 橘色
     top: "95px",
     left: "10px",
     width: "78px",
     height: "208px"
   },
-
-  vegetable: {    // 綠色 中間
+  vegetable: {  // 中間 綠色
     top: "12px",
     left: "96px",
     width: "120px",
     height: "291px"
   },
-
-  grain: {        // 黃色 右上
+  grain: {      // 右上 黃色
     top: "102px",
     left: "224px",
     width: "186px",
     height: "86px"
   },
-
-  protein: {      // 紅色 右下
+  protein: {    // 右下 紅色
     top: "206px",
     left: "224px",
     width: "186px",
@@ -56,7 +52,6 @@ function startGame() {
   gameStarted = true;
   startBtn.disabled = true;
   resetBtn.disabled = false;
-
   message.innerText = "";
   placedCount = 0;
 
@@ -97,7 +92,6 @@ function buildPlate() {
     zone.style.left = positions[cat.id].left;
     zone.style.width = positions[cat.id].width;
     zone.style.height = positions[cat.id].height;
-    zone.style.lineHeight = positions[cat.id].height;
 
     zone.ondragover = e => e.preventDefault();
     zone.ondrop = e => {
@@ -114,7 +108,7 @@ function buildPlate() {
         if (placedCount === gameData.foods.length) {
           clearInterval(timerInterval);
           message.innerText =
-            `🎉 完成！你花了 ${Math.floor((Date.now() - startTime)/1000)} 秒`;
+            `完成！你花了 ${Math.floor((Date.now() - startTime)/1000)} 秒`;
           message.style.color = "blue";
         }
       } else {

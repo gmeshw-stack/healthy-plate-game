@@ -34,13 +34,12 @@ button {
   background-size: 420px 315px;
 }
 
-/* 拖曳區（已像素對齊） */
+/* 拖曳區（正式版完全隱形） */
 .plate-zone {
   position: absolute;
   box-sizing: border-box;
-  border: 2px dashed rgba(0,0,0,0.25);
-  text-align: center;
-  font-size: 18px;
+  border: none;
+  background: transparent;
   pointer-events: auto;
 }
 
