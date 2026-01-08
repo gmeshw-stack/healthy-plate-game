@@ -4,7 +4,6 @@ body {
   background-color: #f8f9fa;
   margin: 0;
   padding: 10px;
-  /* 防止在 iPad Chrome 上長按選取文字 */
   -webkit-user-select: none;
   user-select: none;
 }
@@ -27,9 +26,10 @@ body {
   border: 2px solid #333;
   border-radius: 12px;
   background-color: white;
-  touch-action: none; /* 防止 Chrome 拖曳時觸發頁面捲動 */
+  touch-action: none; 
 }
 
+/* 拖曳感應區：已移除 border 虛線 */
 .plate-zone {
   position: absolute;
   display: flex;
@@ -37,15 +37,19 @@ body {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  border: 2px dashed rgba(255, 0, 0, 0.4);
-  border-radius: 8px;
+  /* 這裡原本有 dashed border，現在已刪除 */
+}
+
+/* 堅果類圓圈：同樣移除虛線 */
+.plate-zone[data-accept="nuts"] {
+  border-radius: 50%;
 }
 
 .category-name {
   font-size: 14px;
   font-weight: bold;
   color: #fff;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.4); /* 稍微調淺一點，讓畫面更乾淨 */
   padding: 2px 6px;
   border-radius: 4px;
   pointer-events: none;
@@ -70,7 +74,6 @@ body {
   cursor: grab;
   font-size: 18px;
   border-radius: 8px;
-  /* 強化 Chrome 拖曳特性 */
   touch-action: none;
   -webkit-user-drag: element; 
 }
