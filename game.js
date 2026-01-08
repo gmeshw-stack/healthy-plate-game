@@ -8,7 +8,7 @@ const foodsArea = document.getElementById("foods");
 const timerText = document.getElementById("timer");
 const startBtn = document.getElementById("startBtn");
 const resetBtn = document.getElementById("resetBtn");
-const message = document.getElementById("message"); // 顯示提示訊息
+const message = document.getElementById("message");
 
 startBtn.onclick = startGame;
 resetBtn.onclick = resetGame;
@@ -49,13 +49,31 @@ function updateTimer() {
   timerText.innerText = `時間：${seconds} 秒`;
 }
 
+// 四個分類對應餐盤圖
+const positions = {
+  fruit:   { top: "20px", left: "10px", width: "80px", height: "260px" },   // 橘色
+  vegetable:{ top: "20px", left: "100px", width: "100px", height: "260px" }, // 綠色
+  protein: { top: "210px", left: "210px", width: "180px", height: "90px" },  // 紅色
+  grain:   { top: "120px", left: "210px", width: "180px", height: "90px" }   // 黃色
+};
+
 function buildPlate() {
   plate.innerHTML = "";
+
   gameData.categories.forEach(cat => {
     const zone = document.createElement("div");
     zone.className = "plate-zone";
     zone.innerText = cat.name;
     zone.dataset.accept = cat.id;
+
+    // 設定位置大小
+    if (positions[cat.id]) {
+      zone.style.top = positions[cat.id].top;
+      zone.style.left = positions[cat.id].left;
+      zone.style.width = positions[cat.id].width;
+      zone.style.height = positions[cat.id].height;
+      zone.style.lineHeight = positions[cat.id].height; // 文字置中
+    }
 
     zone.ondragover = e => e.preventDefault();
     zone.ondrop = e => {
@@ -71,7 +89,7 @@ function buildPlate() {
 
         if (placedCount === gameData.foods.length) {
           clearInterval(timerInterval);
-          message.innerText = `完成！你花了 ${Math.floor((Date.now() - startTime) / 1000)} 秒`;
+          message.innerText = `完成！你花了 ${Math.floor((Date.now() - startTime)/1000)} 秒`;
           message.style.color = "blue";
         }
       } else {
