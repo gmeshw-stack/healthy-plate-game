@@ -12,12 +12,12 @@ document.getElementById("resetBtn").onclick = resetGame;
 
 /* 針對 600px 寬度校準的座標 */
 const positions = {
-  dairy: { top: "15px", left: "15px", width: "150px", height: "140px" },
-  fruit: { top: "140px", left: "95px", width: "115px", height: "290px" },
-  vegetable: { top: "135px", left: "210px", width: "135px", height: "305px" },
-  protein: { top: "125px", left: "350px", width: "235px", height: "130px" },
-  grain: { top: "275px", left: "350px", width: "235px", height: "155px" },
-  nuts: { top: "215px", left: "308px", width: "65px", height: "65px" } // 堅果圓圈
+  dairy: { top: "15px", left: "15px", width: "150px", height: "130px" },
+  fruit: { top: "140px", left: "90px", width: "110px", height: "285px" },
+  vegetable: { top: "135px", left: "210px", width: "115px", height: "295px" },
+  protein: { top: "115px", left: "350px", width: "235px", height: "110px" },
+  grain: { top: "275px", left: "350px", width: "235px", height: "150px" },
+  nuts: { top: "215px", left: "310px", width: "65px", height: "55px" } 
 };
 
 function startGame() {
