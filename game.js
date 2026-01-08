@@ -10,6 +10,7 @@ const message = document.getElementById("message");
 document.getElementById("startBtn").onclick = startGame;
 document.getElementById("resetBtn").onclick = resetGame;
 
+
 // 百分比座標系統，相對於餐盤圖片寬高
 const positions = {
   dairy: { top: "3%", left: "3%", width: "25%", height: "28%" },
@@ -56,15 +57,20 @@ function buildPlate() {
     zone.style.left = pos.left;
     zone.style.width = pos.width;
     zone.style.height = pos.height;
-
-    // 加入分類文字
     zone.innerHTML = `<div class="category-name">${cat.name}</div>`;
 
-    zone.ondragover = e => e.preventDefault();
+    // Chrome 必備：preventDefault 確保 drop 能觸發
+    zone.ondragover = e => {
+        e.preventDefault();
+        return false;
+    };
+    zone.ondragenter = e => e.preventDefault();
+
     zone.ondrop = e => {
       e.preventDefault();
       const foodId = e.dataTransfer.getData("text");
       const food = document.getElementById(foodId);
+      
       if (food && food.dataset.category === cat.id) {
         zone.appendChild(food);
         food.draggable = false;
@@ -78,7 +84,7 @@ function buildPlate() {
           message.innerText = "完成！用時 " + Math.floor((Date.now() - startTime) / 1000) + " 秒";
         }
       } else {
-        message.innerText = "放錯位置了，再試試看！";
+        message.innerText = "放錯囉！";
         message.style.color = "red";
       }
     };
@@ -95,7 +101,12 @@ function buildFoods() {
     food.dataset.category = f.category;
     food.draggable = true;
     food.innerText = f.name;
-    food.ondragstart = e => e.dataTransfer.setData("text", food.id);
+
+    food.ondragstart = e => {
+      e.dataTransfer.effectAllowed = "move";
+      e.dataTransfer.setData("text", food.id);
+    };
+
     foodsArea.appendChild(food);
   });
 }
