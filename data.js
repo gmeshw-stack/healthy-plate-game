@@ -11,9 +11,9 @@ const gameData = {
     { name: "牛奶", category: "dairy" },
     { name: "蘋果", category: "fruit" },
     { name: "青菜", category: "vegetable" },
-    { name: "白飯", category: "grain" },
+    { name: "糙米飯", category: "grain" },
     { name: "雞蛋", category: "protein" },
     { name: "腰果", category: "nuts" },
-    { name: "核桃", category: "nuts" }
+    { name: "花生", category: "nuts" }
   ]
 };

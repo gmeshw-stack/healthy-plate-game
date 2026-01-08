@@ -10,6 +10,7 @@ const message = document.getElementById("message");
 document.getElementById("startBtn").onclick = startGame;
 document.getElementById("resetBtn").onclick = resetGame;
 
+// 百分比座標系統，相對於餐盤圖片寬高
 const positions = {
   dairy: { top: "3%", left: "3%", width: "25%", height: "28%" },
   fruit: { top: "28%", left: "10%", width: "16%", height: "65%" },
@@ -55,7 +56,10 @@ function buildPlate() {
     zone.style.left = pos.left;
     zone.style.width = pos.width;
     zone.style.height = pos.height;
+
+    // 加入分類文字
     zone.innerHTML = `<div class="category-name">${cat.name}</div>`;
+
     zone.ondragover = e => e.preventDefault();
     zone.ondrop = e => {
       e.preventDefault();
@@ -65,6 +69,7 @@ function buildPlate() {
         zone.appendChild(food);
         food.draggable = false;
         food.style.fontSize = "14px";
+        food.style.padding = "5px";
         placedCount++;
         message.innerText = "正確！";
         message.style.color = "green";
@@ -73,7 +78,7 @@ function buildPlate() {
           message.innerText = "完成！用時 " + Math.floor((Date.now() - startTime) / 1000) + " 秒";
         }
       } else {
-        message.innerText = "放錯囉！";
+        message.innerText = "放錯位置了，再試試看！";
         message.style.color = "red";
       }
     };
