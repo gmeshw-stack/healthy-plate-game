@@ -10,8 +10,7 @@ const message = document.getElementById("message");
 document.getElementById("startBtn").onclick = startGame;
 document.getElementById("resetBtn").onclick = resetGame;
 
-
-// 百分比座標系統，相對於餐盤圖片寬高
+// 你校對後的百分比座標
 const positions = {
   dairy: { top: "3%", left: "3%", width: "25%", height: "28%" },
   fruit: { top: "29%", left: "15%", width: "18%", height: "65%" },
@@ -59,23 +58,16 @@ function buildPlate() {
     zone.style.height = pos.height;
     zone.innerHTML = `<div class="category-name">${cat.name}</div>`;
 
-    // Chrome 必備：preventDefault 確保 drop 能觸發
-    zone.ondragover = e => {
-        e.preventDefault();
-        return false;
-    };
-    zone.ondragenter = e => e.preventDefault();
-
+    zone.ondragover = e => { e.preventDefault(); return false; };
     zone.ondrop = e => {
       e.preventDefault();
       const foodId = e.dataTransfer.getData("text");
       const food = document.getElementById(foodId);
-      
       if (food && food.dataset.category === cat.id) {
         zone.appendChild(food);
         food.draggable = false;
-        food.style.fontSize = "14px";
-        food.style.padding = "5px";
+        food.style.fontSize = "16px";
+        food.style.padding = "5px 10px";
         placedCount++;
         message.innerText = "正確！";
         message.style.color = "green";
@@ -84,7 +76,7 @@ function buildPlate() {
           message.innerText = "完成！用時 " + Math.floor((Date.now() - startTime) / 1000) + " 秒";
         }
       } else {
-        message.innerText = "放錯囉！";
+        message.innerText = "再試試看喔！";
         message.style.color = "red";
       }
     };
@@ -101,12 +93,9 @@ function buildFoods() {
     food.dataset.category = f.category;
     food.draggable = true;
     food.innerText = f.name;
-
     food.ondragstart = e => {
-      e.dataTransfer.effectAllowed = "move";
       e.dataTransfer.setData("text", food.id);
     };
-
     foodsArea.appendChild(food);
   });
 }
