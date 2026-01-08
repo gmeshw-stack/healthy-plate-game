@@ -53,7 +53,7 @@ function buildPlate() {
 
     Object.assign(zone.style, positions[cat.id]);
 
-    zone.innerHTML = `<div class="category-name">${cat.name}</div>`;
+    //zone.innerHTML = `<div class="category-name">${cat.name}</div>`;
 
     zone.ondragover = e => e.preventDefault();
     zone.ondrop = e => {
