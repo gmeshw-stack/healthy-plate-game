@@ -43,11 +43,6 @@ button {
   font-weight: bold;
 }
 
-.category-bpm {
-  font-size: 12px;
-  margin-top: 2px;
-}
-
 /* 食物區 */
 #foods {
   width: 200px;
@@ -59,13 +54,5 @@ button {
   margin: 6px;
   padding: 8px;
   cursor: grab;
-}
-
-.food-name {
   font-size: 18px;
-  font-weight: bold;
-}
-
-.food-bpm {
-  font-size: 13px;
 }

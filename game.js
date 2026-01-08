@@ -25,6 +25,7 @@ function startGame() {
   plate.innerHTML = "";
   foodsArea.innerHTML = "";
   message.innerText = "";
+  clearInterval(timerInterval);
 
   startTime = Date.now();
   timerInterval = setInterval(() => {
@@ -52,10 +53,7 @@ function buildPlate() {
 
     Object.assign(zone.style, positions[cat.id]);
 
-    zone.innerHTML = `
-      <div class="category-name">${cat.name}</div>
-      <div class="category-bpm">${cat.bopomofo}</div>
-    `;
+    zone.innerHTML = `<div class="category-name">${cat.name}</div>`;
 
     zone.ondragover = e => e.preventDefault();
     zone.ondrop = e => {
@@ -66,6 +64,7 @@ function buildPlate() {
         placedCount++;
         message.innerText = "正確！";
         message.style.color = "green";
+
         if (placedCount === gameData.foods.length) {
           clearInterval(timerInterval);
           message.innerText =
@@ -92,10 +91,8 @@ function buildFoods() {
     food.id = "food" + i;
     food.dataset.category = f.category;
     food.draggable = true;
-    food.innerHTML = `
-      <div class="food-name">${f.name}</div>
-      <div class="food-bpm">${f.bopomofo}</div>
-    `;
+    food.innerText = f.name;
+
     food.ondragstart = e => e.dataTransfer.setData("text", food.id);
     foodsArea.appendChild(food);
   });
