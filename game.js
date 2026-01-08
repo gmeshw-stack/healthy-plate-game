@@ -13,11 +13,11 @@ document.getElementById("resetBtn").onclick = resetGame;
 // 百分比座標系統，相對於餐盤圖片寬高
 const positions = {
   dairy: { top: "3%", left: "3%", width: "25%", height: "28%" },
-  fruit: { top: "28%", left: "10%", width: "16%", height: "65%" },
-  vegetable: { top: "28%", left: "28%", width: "22%", height: "65%" },
-  protein: { top: "25%", left: "55%", width: "40%", height: "30%" },
-  grain: { top: "58%", left: "55%", width: "40%", height: "38%" },
-  nuts: { top: "45%", left: "50%", width: "10%", height: "10%" }
+  fruit: { top: "29%", left: "13%", width: "16%", height: "70%" },
+  vegetable: { top: "28%", left: "31%", width: "20%", height: "65%" },
+  protein: { top: "25%", left: "58%", width: "38%", height: "30%" },
+  grain: { top: "58%", left: "58%", width: "38%", height: "38%" },
+  nuts: { top: "43%", left: "49%", width: "12%", height: "12%" }
 };
 
 function startGame() {
