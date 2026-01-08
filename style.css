@@ -1,11 +1,17 @@
 body {
-  font-family: "Noto Sans TC", sans-serif;
+  /* 全域套用注音字型 */
+  font-family: 'Bpmf GenRyu', "Noto Sans TC", sans-serif;
   text-align: center;
   background-color: #f8f9fa;
   margin: 0;
   padding: 10px;
+  /* 防止在 iPad 上長按選取文字影響拖曳 */
   -webkit-user-select: none;
   user-select: none;
+}
+
+h1 {
+  margin-bottom: 5px;
 }
 
 #game-area {
@@ -16,6 +22,7 @@ body {
   margin-top: 15px;
 }
 
+/* 餐盤樣式 */
 #plate {
   position: relative;
   width: 90vw;
@@ -26,10 +33,11 @@ body {
   border: 2px solid #333;
   border-radius: 12px;
   background-color: white;
+  /* 禁用預設手勢防止 Chrome 拖曳時畫面捲動 */
   touch-action: none; 
 }
 
-/* 拖曳感應區：已移除 border 虛線 */
+/* 拖曳感應區：已取消虛線 */
 .plate-zone {
   position: absolute;
   display: flex;
@@ -37,24 +45,27 @@ body {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  /* 這裡原本有 dashed border，現在已刪除 */
+  /* border: none; // 確保沒有邊框 */
 }
 
-/* 堅果類圓圈：同樣移除虛線 */
+/* 堅果類圓圈：維持圓形結構以便排版 */
 .plate-zone[data-accept="nuts"] {
   border-radius: 50%;
 }
 
+/* 分類文字樣式 */
 .category-name {
   font-size: 14px;
   font-weight: bold;
   color: #fff;
-  background: rgba(0, 0, 0, 0.4); /* 稍微調淺一點，讓畫面更乾淨 */
+  background: rgba(0, 0, 0, 0.4);
   padding: 2px 6px;
   border-radius: 4px;
   pointer-events: none;
+  white-space: nowrap;
 }
 
+/* 下方食物儲存區 */
 #foods {
   width: 90vw;
   max-width: 600px;
@@ -62,18 +73,45 @@ body {
   background: white;
   border: 2px dashed #bbb;
   border-radius: 10px;
-  padding: 10px;
+  padding: 15px;
 }
 
+/* 食物卡片：為了注音加大尺寸 */
 .food {
   display: inline-block;
   background: #fff;
   border: 2px solid #444;
-  margin: 6px;
-  padding: 12px 20px;
+  margin: 8px;
+  padding: 12px 22px; /* 增加寬度容納注音 */
   cursor: grab;
-  font-size: 18px;
+  font-size: 20px;    /* 稍微放大，注音才清晰 */
   border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  /* 強化 Chrome 拖曳特性 */
   touch-action: none;
   -webkit-user-drag: element; 
+}
+
+/* 當食物放入餐盤後的微調 */
+.plate-zone .food {
+  font-size: 15px;
+  padding: 5px 10px;
+  margin: 2px;
+  border-width: 1px;
+}
+
+/* 按鈕樣式 */
+button {
+  font-family: inherit; /* 讓按鈕也使用注音字型 */
+  padding: 8px 16px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+#message {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 10px;
+  height: 30px;
 }
