@@ -15,25 +15,35 @@ resetBtn.onclick = resetGame;
 
 /* 像素級定位（對齊餐盤圖） */
 const positions = {
-  fruit: {
-    top: "12px",
+  dairy: {        // 淺藍 左上
+    top: "10px",
     left: "10px",
     width: "78px",
-    height: "291px"
+    height: "80px"
   },
-  vegetable: {
+
+  fruit: {        // 橘色 左側
+    top: "95px",
+    left: "10px",
+    width: "78px",
+    height: "208px"
+  },
+
+  vegetable: {    // 綠色 中間
     top: "12px",
     left: "96px",
     width: "120px",
     height: "291px"
   },
-  grain: {
+
+  grain: {        // 黃色 右上
     top: "102px",
     left: "224px",
     width: "186px",
     height: "86px"
   },
-  protein: {
+
+  protein: {      // 紅色 右下
     top: "206px",
     left: "224px",
     width: "186px",
