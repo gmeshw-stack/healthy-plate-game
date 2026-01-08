@@ -1,42 +1,39 @@
 body {
   font-family: "Noto Sans TC", sans-serif;
   text-align: center;
-  background-color: #f4f4f4;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 10px;
 }
 
 #game-area {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 30px;
-  margin-top: 20px;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
-/* 放大後的餐盤 */
 #plate {
   position: relative;
-  width: 600px;  /* 寬度改為 600 */
-  height: 450px; /* 高度依比例調整 */
-  background: url("plate.png") no-repeat;
+  width: 90vw;
+  max-width: 600px; /* 電腦版最大尺寸 */
+  aspect-ratio: 4 / 3;
+  background: url("plate.png") no-repeat center;
   background-size: 100% 100%;
-  border: 2px solid #ccc;
-  border-radius: 10px;
+  border: 2px solid #333;
+  border-radius: 12px;
   background-color: white;
+  touch-action: none; /* iPad 操作必備 */
 }
 
-/* 感應區樣式 */
 .plate-zone {
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
-  /* 測試時可開啟下方 border 查看位置，正式用時可註解掉 */
-  border: 1px dashed red; 
 }
 
-/* 分類文字樣式 */
 .category-name {
   font-size: 14px;
   font-weight: bold;
@@ -44,26 +41,28 @@ body {
   background: rgba(0, 0, 0, 0.5);
   padding: 2px 6px;
   border-radius: 4px;
-  pointer-events: none; /* 防止文字擋住拖曳 */
-  margin-bottom: 5px;
+  pointer-events: none;
 }
 
 #foods {
-  width: 250px;
-  min-height: 450px;
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 10px;
+  width: 90vw;
+  max-width: 600px;
+  min-height: 120px;
+  background: white;
+  border: 2px dashed #bbb;
   border-radius: 10px;
+  padding: 10px;
 }
 
 .food {
+  display: inline-block;
   background: #fff;
-  border: 2px solid #333;
-  margin: 8px;
-  padding: 10px;
+  border: 2px solid #444;
+  margin: 6px;
+  padding: 12px 20px;
   cursor: grab;
   font-size: 18px;
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  touch-action: none;
+  user-select: none;
 }
